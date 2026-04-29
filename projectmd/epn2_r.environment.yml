@@ -1,0 +1,41 @@
+name: epn2_r
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - r-base>=4.3,<4.5
+  - r-essentials
+  - r-devtools
+  - r-remotes
+  - r-biocmanager
+  # Seurat 生态（用 4.x 替代论文 3.2.0；API 兼容，差异极小）
+  - r-seurat
+  - r-seuratobject
+  - r-hdf5r
+  # 拟时序
+  - bioconductor-monocle           # Monocle 2 (DDRTree)
+  - bioconductor-slingshot
+  - bioconductor-tscan
+  # CNV
+  - bioconductor-infercnv
+  # 细胞通讯依赖（CellChat 本身从 GitHub 装）
+  - r-nmf
+  - r-circlize
+  - bioconductor-complexheatmap
+  # 富集
+  - bioconductor-clusterprofiler
+  - bioconductor-org.hs.eg.db
+  # 绘图与统计
+  - r-ggplot2
+  - r-corrplot
+  - r-survminer
+  - r-survival
+  - r-coin
+  - r-pheatmap
+  - r-patchwork
+  # Jupyter
+  - r-irkernel
+  # 系统
+  - libxml2
+  - cairo
+  - pkg-config
