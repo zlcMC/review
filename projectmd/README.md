@@ -158,7 +158,38 @@ conda run -n epn2_r R -e 'remotes::install_github("jinworks/CellChat")'
 - Python：`from workspace_paths import raw_data_path, output_path`
 - R：`source("workspace_paths.R")`，使用 `raw_data_path()` / `output_path()`
 
-## 5. 已知坑
+## 5. GitHub 同步
+
+仓库已经配置根目录 `.gitignore`，默认只同步代码、说明和配置文件。下列目录不会推送到 GitHub：`projectfile/`、`output/`、`read/`、`notebooks/`、`.venv/`、`.vscode/`。
+
+日常同步流程：
+
+```bash
+cd /home/zlcmc/wslproject
+
+# 1. 查看本地改动
+git status
+
+# 2. 暂存改动；大数据和运行结果会被 .gitignore 排除
+git add .
+
+# 3. 提交，提交信息改成这次修改的简短说明
+git commit -m "Update analysis scripts"
+
+# 4. 推送到 GitHub
+git push
+```
+
+检查本地和 GitHub 是否一致：
+
+```bash
+git status --short --branch
+git log --oneline --decorate --max-count=5
+```
+
+如果 `git status --short --branch` 只显示 `## main...origin/main`，且没有额外文件列表，表示本地与远端当前一致。
+
+## 6. 已知坑
 
 - pip 26.0.1 在 Python 3.10 上有 `Link.from_json` bug → 必须降到 `pip<25`
 - velocyto 0.17.17 不支持 PEP 517 build isolation，必须 `pip install --no-build-isolation velocyto`，且事先装好 `numpy<2` + `cython`
